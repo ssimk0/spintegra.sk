@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-export default function setup() {
+export default function setup(t) {
   axios.defaults.baseURL = 'https://api.veselahviezdicka.sk';
   axios.interceptors.response.use(
     (response) => {
       return response;
     },
     (error) => {
-      if (error.response && (error.response.status === 401 || error.response.status === 403) && error.request.responseURL.indexOf('api/auth/login') === -1) {
+      if (error.response && (error.response.status === 401) && error.request.responseURL.indexOf('api/auth/login') === -1) {
         document.location = "/logout";
         localStorage.setItem("token", "");
 
@@ -21,12 +21,7 @@ export default function setup() {
     },
   );
 
-  // before a request is made start the nprogress
-  axios.interceptors.request.use((config) => {
-    return config;
-  });
-
-  let token = localStorage.getItem("token");
+  let token = t || localStorage.getItem("token");
 
   if (token !== 'null' && token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;

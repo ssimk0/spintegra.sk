@@ -1,5 +1,4 @@
-
-export default {
+const NewsService = {
     getNews() {
         return Promise.resolve([{
             "id": 1,
@@ -36,3 +35,5 @@ export default {
         }]);
     }
 }
+
+export default NewsService;

@@ -1,8 +1,8 @@
-import React, {useContext, useEffect} from 'react';
-import {AppContext, SET_PAGE_TITLE} from '../context/app';
+import React, {useEffect} from 'react';
+import {useAppContext, SET_PAGE_TITLE} from '../context/app';
 
 function Home() {
-    const {dispatch} = useContext(AppContext);
+    const {dispatch} = useAppContext();
 
     useEffect(() => {
         dispatch({type: SET_PAGE_TITLE, value: 'Domov'});

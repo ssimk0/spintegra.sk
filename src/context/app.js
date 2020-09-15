@@ -6,6 +6,7 @@ localStorageBackwardCompatibilityInit();
 export const SET_USER_INFO = 'SET_USER_INFO';
 export const SET_TOKEN = 'SET_TOKEN';
 export const SET_PAGE_TITLE = 'SET_PAGE_TITLE';
+export const SET_MENU_ITEMS = 'SET_MENU_ITEMS';
 
 let reducer = (state, action) => {
     switch (action.type) {
@@ -24,12 +25,14 @@ let reducer = (state, action) => {
                 return state
             }
             return {...state, title: action.value}
+        case SET_MENU_ITEMS:
+            return {...state, menuItems: action.value}
         default:
             return state;
     }
 };
 
-const initialState = {user: null, token: localStorage.getItem("token") || null, title: ""}
+const initialState = {user: null, token: localStorage.getItem("token") || null, title: "", menuItems: []}
 
 const AppContext = React.createContext(initialState);
 

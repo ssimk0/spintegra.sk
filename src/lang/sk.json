@@ -1,0 +1,35 @@
+{
+    "pages": {
+        "login": {
+            "menuName": "Prihlásenie"
+        },
+        "home": {
+            "menuName": "Aktuality"
+        }
+    },
+    "articles": {
+        "created": "Vytvorené",
+        "top": "Najčitanejšie"
+    },
+    "actions": {
+        "logout": "Odhlásiť"
+    },
+    "form": {
+        "login": {
+            "Email": "Email",
+            "Password": "Heslo",
+            "Submit": "Prihlásiť"
+        },
+        "article": {
+            "Title": "Titulok",
+            "Short": "Skratený tvar",
+            "Content": "Článok",
+            "Published": "Zverejnený",
+            "Submit": "Uložiť"
+        },
+        "validationMessages": {
+            "required": "Pole '{{field}}' je povinné",
+            "invalid_format": "Pole '{{field}}' nieje v spravnom formáte"
+        }
+    }
+}

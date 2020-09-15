@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import * as Sentry from '@sentry/react';
 import {Integrations} from '@sentry/tracing';
 import {AppProvider} from './context/app';
+import PageService from './service/page';
 import setupApi from './api';
 
 import App from './App';
@@ -23,7 +24,7 @@ setupApi()
 
 ReactDOM.render(
     <AppProvider>
-        <App/>
+        <App pageService={PageService}/>
     </AppProvider>,
     document.getElementById('root')
 );

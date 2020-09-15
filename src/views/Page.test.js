@@ -31,7 +31,7 @@ const defaultContext = {
     }
 }
 
-async function renderComponent(slug = "test", context = defaultContext) {
+async function renderComponent(slug = "test", context = defaultContext, service=testService) {
     let wrapper = null;
 
 
@@ -45,7 +45,7 @@ async function renderComponent(slug = "test", context = defaultContext) {
             <MemoryRouter initialEntries={[`/page/menu/${slug}`]}>
                 <Switch>
                     <Route path="/page/:category/:slug">
-                        <Page pageService={testService}/>
+                        <Page pageService={service}/>
                     </Route>
                 </Switch>
             </MemoryRouter>
@@ -54,6 +54,18 @@ async function renderComponent(slug = "test", context = defaultContext) {
 
     return wrapper;
 }
+
+test('should call getPage on service', async () => {
+    const mockFn = jest.fn();
+
+    mockFn.mockReturnValue(Promise.resolve({}));
+
+    await renderComponent("test", defaultContext, {
+        getPage: mockFn
+    });
+
+    expect(mockFn.mock.calls).toEqual([["test", "menu"]]);
+});
 
 
 test('should call dispatch set page title with slug', async () => {
