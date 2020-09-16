@@ -18,7 +18,6 @@ function LoginForm({userService}) {
                 window.location = '/';
             });
         })
-
     };
 
     return (
@@ -40,8 +39,8 @@ function LoginForm({userService}) {
                     })}
                 />
                 <span className="input-error">
-                            {errors.email && errors.email.message}
-                        </span>
+                    {errors.email && errors.email.message}
+                </span>
             </div>
             <div className="form-group">
                 <label>
@@ -57,8 +56,8 @@ function LoginForm({userService}) {
                     })}
                 />
                 <span className="input-error">
-                            {errors.password && errors.password.message}
-                        </span>
+                    {errors.password && errors.password.message}
+                </span>
             </div>
             <button type="submit" className="btn">{i18n.t("form.login.Submit")}</button>
         </form>
