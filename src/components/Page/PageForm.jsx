@@ -1,12 +1,13 @@
 import React, {useState} from "react";
-import {ContentState, EditorState} from "draft-js";
-import htmlToDraft from 'html-to-draftjs';
-import {stateToHTML} from "draft-js-export-html";
-import {Editor} from "react-draft-wysiwyg";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import i18n from "../../utils/i18n";
 import {useForm} from "react-hook-form";
 import {uploadImage} from "../../utils/uploadImage";
+
+const {ContentState, EditorState} = React.lazy(() => import('draft-js'));
+const {Editor} = React.lazy(() => import('react-draft-wysiwyg'));
+const htmlToDraft = React.lazy(() => import('html-to-draftjs'));
+const {stateToHTML} = React.lazy(() => import('draft-js-export-html'));
 
 function PageForm({page, onSubmit}) {
     const {handleSubmit, register, errors} = useForm();
