@@ -1,12 +1,12 @@
 import React from "react";
 
 
-function NewsList(props) {
-    const { news } = props;
-    let newsList = [];
+function ArticleList(props) {
+    const { articles } = props;
+    let articleList = [];
 
-    if (news && news.length) {
-        newsList = news.map((newsItem) => (
+    if (articles && articles.length) {
+        articleList = articles.map((newsItem) => (
             <li className="grid-cols-12" key={newsItem.id}>
                 <h4 className="title text-2xl">{newsItem.title}</h4>
                 <p className="break-words" dangerouslySetInnerHTML={{__html: newsItem.short}}>
@@ -18,11 +18,11 @@ function NewsList(props) {
     return (
         <div id="news" className="grid">
             <ul className="grid-cols-12">
-                {newsList}
+                {articleList}
             </ul>
         </div>
     );
 }
 
 
-export default NewsList;
+export default ArticleList;

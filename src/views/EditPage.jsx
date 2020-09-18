@@ -15,7 +15,7 @@ function EditPage({pageService}) {
     const {slug, category} = useParams();
 
     const handleEdit = values => {
-       pages.editPage(category, {...page, ...values}).then(() => {
+       pages.edit(category, {...page, ...values}).then(() => {
            history.push(`/pages/${category}/${slug}`)
        })
     };

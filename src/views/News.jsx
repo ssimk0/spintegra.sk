@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {SET_PAGE_TITLE, useAppContext} from '../context/app';
 import Loader from "../components/Loader";
-import NewsList from "../components/News/NewsList";
+import ArticleList from "../components/Articles/ArticleList";
 import i18n from "../utils/i18n";
 
-
-function News({newsService}) {
-    const [news, setNews] = useState([]);
+// TODO: add pagination
+function News({articleService}) {
+    const [articles, setArticles] = useState([]);
     const [isLoading, setLoading] = useState(true);
     const {dispatch} = useAppContext();
 
@@ -14,13 +14,13 @@ function News({newsService}) {
     useEffect(() => {
         dispatch({type: SET_PAGE_TITLE, value: i18n.t("pages.articles.menuName")});
 
-        newsService.getNews().then((news) => {
-            setNews(news);
+        articleService.getArticles().then((data) => {
+            setArticles(data.articles);
             setLoading(false);
         })
-    }, [newsService, dispatch])
+    }, [articleService, dispatch])
 
-    return isLoading ? <Loader/> : <NewsList news={news}/>
+    return isLoading ? <Loader/> : <ArticleList articles={articles}/>
 }
 
 export default News;

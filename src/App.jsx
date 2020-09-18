@@ -4,7 +4,7 @@ import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom"
 import Home from './views/Home';
 import {SET_MENU_ITEMS, useAppContext} from './context/app';
 import Page from "./views/Page";
-import NewsService from "./service/news";
+import ArticleService from "./service/article";
 import PageService from "./service/page";
 import News from "./views/News";
 import Loader from "./components/Loader";
@@ -84,7 +84,7 @@ function App({pageService}) {
                             <Login userService={UserService}/>
                         </Route>
                         <Route path="/articles">
-                            <News newsService={NewsService}/>
+                            <News articleService={ArticleService}/>
                         </Route>
                         <Route path="/pages/:category/:slug/edit">
                             <EditPage pageService={PageService}/>
