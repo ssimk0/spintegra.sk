@@ -8,7 +8,7 @@ describe('Login form test', () => {
     let mockSubmit
 
 
-    beforeEach(() => {
+    beforeEach(async () => {
         mockSubmit = jest.fn();
 
         const testPage = {
@@ -16,10 +16,11 @@ describe('Login form test', () => {
             body: 'body test'
         }
 
-
-        wrapper = mount(
-            <PageForm page={testPage} onSubmit={mockSubmit}/>
-        )
+        await act(async () => {
+            wrapper = mount(
+                <PageForm page={testPage} onSubmit={mockSubmit}/>
+            )
+        })
     })
 
     test('should call submit callback after submit form', async () => {

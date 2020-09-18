@@ -1,18 +1,24 @@
-import React, {useState} from "react";
+import React, {Suspense, useState} from "react";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import i18n from "../../utils/i18n";
 import {useForm} from "react-hook-form";
 import {uploadImage} from "../../utils/uploadImage";
 
-const {ContentState, EditorState} = React.lazy(() => import('draft-js'));
-const {Editor} = React.lazy(() => import('react-draft-wysiwyg'));
-const htmlToDraft = React.lazy(() => import('html-to-draftjs'));
-const {stateToHTML} = React.lazy(() => import('draft-js-export-html'));
+import {ContentState, EditorState} from 'draft-js';
+import {stateToHTML} from 'draft-js-export-html';
+import Loader from "../Loader";
+import htmlToDraft from 'html-to-draftjs';
+
+const Editor = React.lazy(() => import('react-draft-wysiwyg').then(module => {
+    return {default: module.Editor}
+}));
+
 
 function PageForm({page, onSubmit}) {
+
     const {handleSubmit, register, errors} = useForm();
-    let content = EditorState.createEmpty()
-    if (page.body) {
+    let content = EditorState ? EditorState.createEmpty() : {}
+    if (page.body && htmlToDraft) {
         const blocksFromHtml = htmlToDraft(page.body);
         const {contentBlocks, entityMap} = blocksFromHtml;
         const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
@@ -42,15 +48,17 @@ function PageForm({page, onSubmit}) {
                         {errors.title && errors.title.message}
                     </span>
                 </div>
-                <Editor
-                    editorState={contentState}
-                    toolbarClassName="toolbarClassName"
-                    wrapperClassName="wrapperClassName"
-                    editorClassName="editorClassName"
-                    uploadEnabled={true}
-                    uploadCallback={uploadImage}
-                    onEditorStateChange={onEditorStateChange}
-                />
+                <Suspense fallback={<Loader/>}>
+                    <Editor
+                        editorState={contentState}
+                        toolbarClassName="toolbarClassName"
+                        wrapperClassName="wrapperClassName"
+                        editorClassName="editorClassName"
+                        uploadEnabled={true}
+                        uploadCallback={uploadImage}
+                        onEditorStateChange={onEditorStateChange}
+                    />
+                </Suspense>
                 <button type="submit" className="btn">{i18n.t("form.pages.Submit")}</button>
             </form>
         </div>
