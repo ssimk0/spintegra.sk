@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {mount} from 'enzyme';
 import * as AppContext from '../../context/app';
-import * as Form from 'react-hook-form';
 import LoginForm from "./LoginForm";
 import axios from "axios";
+import {act} from "react-dom/test-utils";
 
 describe('Login form test', () => {
     let wrapper
@@ -18,16 +18,6 @@ describe('Login form test', () => {
             },
             dispatch: mockDispatch
         }
-
-        jest
-            .spyOn(Form, 'useForm')
-            .mockImplementation(() => {
-                return {
-                    handleSubmit: (fn) => fn(),
-                    register: (params) => null,
-                    errors: (err) => null
-                }
-            });
 
         jest
             .spyOn(AppContext, 'useAppContext')
@@ -49,15 +39,17 @@ describe('Login form test', () => {
         )
     })
 
-    test('should dispatch token and user info after submit form', () => {
+    test('should dispatch token and user info after submit form', async () => {
         const email = wrapper.find("input[name='email']")
         const password = wrapper.find("input[name='password']")
         const button = wrapper.find("button[type='submit']")
 
-        email.simulate('change', {target: {value: 'test@test.com'}})
-        password.simulate('change', {target: {value: 'test1234'}})
+        email.instance().value = 'test@test.com'
+        password.instance().value = 'test1234'
 
-        button.simulate('click')
+        await act(async () => {
+            button.simulate('submit')
+        })
 
         expect(mockDispatch.mock.calls).toEqual([
             [{

@@ -39,7 +39,7 @@ async function renderComponent(slug = "test", context = defaultContext, service=
         .spyOn(Form, 'useForm')
         .mockImplementation(() => {
             return {
-                handleSubmit: (fn) => fn(),
+                handleSubmit: (fn) => null,
                 register: (params) => null,
                 errors: (err) => null
             }

@@ -8,7 +8,7 @@ import i18n from "../../utils/i18n";
 import {useForm} from "react-hook-form";
 import {uploadImage} from "../../utils/uploadImage";
 
-function PageForm({page, mode, onSubmit}) {
+function PageForm({page, onSubmit}) {
     const {handleSubmit, register, errors} = useForm();
     let content = EditorState.createEmpty()
     if (page.body) {
