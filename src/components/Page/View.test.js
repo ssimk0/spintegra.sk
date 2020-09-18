@@ -1,7 +1,7 @@
 import React from 'react';
 import {mount} from 'enzyme';
 import {act} from 'react-dom/test-utils';
-import Page from './view';
+import Page from './View';
 
 const testPage = {
     title: "test",

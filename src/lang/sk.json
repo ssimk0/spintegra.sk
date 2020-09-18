@@ -4,6 +4,9 @@
             "menuName": "Prihlásenie"
         },
         "home": {
+            "menuName": "Domov"
+        },
+        "articles": {
             "menuName": "Aktuality"
         }
     },
@@ -25,6 +28,11 @@
             "Short": "Skratený tvar",
             "Content": "Článok",
             "Published": "Zverejnený",
+            "Submit": "Uložiť"
+        },
+        "pages": {
+            "Title": "Titulok",
+            "Body": "Obash",
             "Submit": "Uložiť"
         },
         "validationMessages": {

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {SET_PAGE_TITLE, useAppContext} from '../context/app';
 import Loader from "../components/Loader";
 import NewsList from "../components/News/NewsList";
+import i18n from "../utils/i18n";
 
 
 function News({newsService}) {
@@ -11,7 +12,7 @@ function News({newsService}) {
 
 
     useEffect(() => {
-        dispatch({type: SET_PAGE_TITLE, value: "Aktuality"});
+        dispatch({type: SET_PAGE_TITLE, value: i18n.t("pages.articles.menuName")});
 
         newsService.getNews().then((news) => {
             setNews(news);

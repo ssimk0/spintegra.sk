@@ -10,12 +10,10 @@ function LoginForm({userService}) {
 
     const onSubmit = values => {
         userService.login(values).then((token) => {
-            apiSetup(token);
+            apiSetup(token.token);
             userService.userInfo().then((info) => {
-                dispatch({type: SET_TOKEN, value: token});
-
                 dispatch({type: SET_USER_INFO, value: info});
-                window.location = '/';
+                dispatch({type: SET_TOKEN, value: token.token});
             });
         })
     };

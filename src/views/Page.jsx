@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {SET_PAGE_TITLE, useAppContext} from '../context/app';
 import Loader from "../components/Loader";
-import PageView from "../components/Page/view";
+import PageView from "../components/Page/View";
 
 
 function Page({pageService}) {

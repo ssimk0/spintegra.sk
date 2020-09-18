@@ -10,6 +10,8 @@ import News from "./views/News";
 import Loader from "./components/Loader";
 import Login from "./views/Login";
 import UserService from "./service/user";
+import EditPage from "./views/EditPage";
+import i18n from "./utils/i18n";
 
 function App({pageService}) {
     const [show, setShow] = useState(false);
@@ -63,11 +65,11 @@ function App({pageService}) {
                         <ul className="text-sm lg:flex-grow text-center lg:text-left">
                             <li className="lg:mr-4 block lg:inline-block">
                                 <NavLink to="/"
-                                         className="lg:mt-0 text-blue-500 hover:text-blue-800">Domov</NavLink>
+                                         className="lg:mt-0 text-blue-500 hover:text-blue-800">{i18n.t("pages.home.menuName")}</NavLink>
                             </li>
                             <li className="lg:mr-4 block lg:inline-block">
                                 <NavLink to="/articles"
-                                         className="lg:mt-0 text-blue-500 hover:text-blue-800">Aktuality</NavLink>
+                                         className="lg:mt-0 text-blue-500 hover:text-blue-800">{i18n.t("pages.articles.menuName")}</NavLink>
                             </li>
                             {menuList}
                         </ul>
@@ -78,13 +80,16 @@ function App({pageService}) {
                         <Route exact path="/">
                             <Home/>
                         </Route>
-                        <Route exact path="/Login">
+                        <Route path="/Login">
                             <Login userService={UserService}/>
                         </Route>
-                        <Route exact path="/articles">
+                        <Route path="/articles">
                             <News newsService={NewsService}/>
                         </Route>
-                        <Route exact path="/pages/:category/:slug">
+                        <Route path="/pages/:category/:slug/edit">
+                            <EditPage pageService={PageService}/>
+                        </Route>
+                        <Route path="/pages/:category/:slug">
                             <Page pageService={PageService}/>
                         </Route>
                     </Switch>

@@ -37,7 +37,7 @@ describe('Login form test', () => {
         jest.spyOn(React, "useEffect").mockImplementation(f => f());
 
         const testService = {
-            login: () => Promise.resolve("token"),
+            login: () => Promise.resolve({token: "token"}),
             userInfo: () => Promise.resolve({
                 "name": "test"
             })
@@ -61,13 +61,13 @@ describe('Login form test', () => {
 
         expect(mockDispatch.mock.calls).toEqual([
             [{
-                "type": "SET_TOKEN",
-                "value": "token",
-            }], [{
                 "type": "SET_USER_INFO",
                 "value": {
                     "name": "test"
                 },
+            }], [{
+                "type": "SET_TOKEN",
+                "value": "token",
             }]
         ]);
 
