@@ -3,6 +3,7 @@ import {mount} from 'enzyme';
 import {act} from 'react-dom/test-utils';
 import News from './News';
 import * as AppContext from '../context/app';
+import {MemoryRouter} from "react-router-dom";
 
 
 const defaultContext = {
@@ -17,7 +18,7 @@ async function renderComponent(context = defaultContext) {
     const mockGetNews = jest.fn(() => Promise.resolve([]))
 
     const testService = {
-        getNews: mockGetNews
+        getArticles: mockGetNews
     }
 
     jest
@@ -27,7 +28,9 @@ async function renderComponent(context = defaultContext) {
 
     await act(async () => {
         wrapper = mount(
-            <News newsService={testService}/>
+            <MemoryRouter initialEntries={[`/articles`]}>
+                <News articleService={testService}/>
+            </MemoryRouter>
         );
     })
 

@@ -8,7 +8,9 @@ import setupApi from './api';
 
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import './tailwind.output.css';
+import 'tailwind.output.css';
+import 'styles/main.css';
+
 
 if (process.env === "production") {
     Sentry.init({

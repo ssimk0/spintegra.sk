@@ -67,3 +67,7 @@ input:focus {
 label {
     @apply block text-gray-700 text-sm font-bold mb-2
 }
+
+.disabled {
+    @apply opacity-50 cursor-not-allowed;
+}

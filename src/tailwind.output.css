@@ -624,6 +624,12 @@ video {
   background-color: rgba(255, 255, 255, var(--bg-opacity));
 }
 
+.border-gray-600 {
+  --border-opacity: 1;
+  border-color: #718096;
+  border-color: rgba(113, 128, 150, var(--border-opacity));
+}
+
 .border-blue-500 {
   --border-opacity: 1;
   border-color: #4299e1;
@@ -674,6 +680,10 @@ video {
 
 .flex-grow {
   flex-grow: 1;
+}
+
+.font-semibold {
+  font-weight: 600;
 }
 
 .h-3 {
@@ -738,6 +748,10 @@ video {
   padding-right: 2rem;
 }
 
+.pb-4 {
+  padding-bottom: 1rem;
+}
+
 .pt-6 {
   padding-top: 1.5rem;
 }
@@ -766,10 +780,22 @@ video {
   text-align: center;
 }
 
+.text-gray-500 {
+  --text-opacity: 1;
+  color: #a0aec0;
+  color: rgba(160, 174, 192, var(--text-opacity));
+}
+
 .text-blue-500 {
   --text-opacity: 1;
   color: #4299e1;
   color: rgba(66, 153, 225, var(--text-opacity));
+}
+
+.hover\:text-gray-600:hover {
+  --text-opacity: 1;
+  color: #718096;
+  color: rgba(113, 128, 150, var(--text-opacity));
 }
 
 .hover\:text-blue-800:hover {
@@ -790,8 +816,24 @@ video {
   width: 100%;
 }
 
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .grid-cols-12 {
   grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+
+.transition {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+}
+
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.duration-150 {
+  transition-duration: 150ms;
 }
 
 @-webkit-keyframes spin {
@@ -970,6 +1012,11 @@ label {
   font-size: 0.875rem;
   font-weight: 700;
   margin-bottom: 0.5rem
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 @media (min-width: 640px) {

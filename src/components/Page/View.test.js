@@ -24,7 +24,7 @@ async function renderComponent(page = testPage) {
 test('renders page component with container of id page', async () => {
     let wrapper = await renderComponent();
     const pageWrapper = wrapper.find('#page');
-    expect(pageWrapper.length > 0).toEqual(true);
+    expect(pageWrapper.exists).toBeTruthy();
 });
 
 test('renders page title correctly', async () => {

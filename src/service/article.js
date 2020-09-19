@@ -1,8 +1,8 @@
 import articles from '../api/articles';
 
 const NewsService = {
-    getArticles() {
-        return articles.list();
+    getArticles(params) {
+        return articles.list(params);
     }
 }
 

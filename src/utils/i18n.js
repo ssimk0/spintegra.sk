@@ -16,4 +16,6 @@ i18next
     },
   })
 
-export default i18next
+const i18n = i18next;
+
+export default i18n;

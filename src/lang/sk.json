@@ -39,5 +39,9 @@
             "required": "Pole '{{field}}' je povinné",
             "invalid_format": "Pole '{{field}}' nieje v spravnom formáte"
         }
+    },
+    "pagination": {
+        "Prev": "Predchadzajúce",
+        "Next": "Ďalšie"
     }
 }
