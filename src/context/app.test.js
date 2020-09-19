@@ -1,4 +1,4 @@
-import {initialState, reducer, SET_PAGE_TITLE, SET_TOKEN, SET_USER_INFO} from './app';
+import {initialState, reducer, SET_MENU_ITEMS, SET_PAGE_TITLE, SET_TOKEN, SET_USER_INFO} from './app';
 
 function dispatch(action, state = initialState) {
     return reducer({...state}, action);
@@ -85,4 +85,17 @@ it("should update the token in state and local storage", () => {
 
     expect(state.token).toEqual("Example");
     expect(localStorage.getItem("token")).toEqual("Example");
+})
+
+it("should update menu items", () => {
+    const state = dispatch({
+        type: SET_MENU_ITEMS,
+        value: [{
+            "title": "test",
+            "slug": "t"
+        }]
+    })
+
+    expect(state.menuItems.length).toEqual(1);
+    expect(state.menuItems[0].title).toEqual("test");
 })

@@ -6,7 +6,6 @@ function Pagination({page, total_pages}) {
     const disabledPrev = page === 1;
     const disabledNext = page === total_pages;
     const history = useHistory();
-
     const changePage = (count) => {
         history.push(`${history.location.pathname}?page=${page + count}`)
     }

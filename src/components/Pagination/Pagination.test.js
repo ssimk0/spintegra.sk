@@ -1,22 +1,28 @@
 import React from 'react';
-import {mount} from 'enzyme';
 import {act} from 'react-dom/test-utils';
 import Pagination from './Pagination';
 
-async function renderComponent(page = 1, total= 10) {
+import renderWithRouter from "../../setupTests";
+
+
+async function renderComponent(page = 1, total = 10) {
     let wrapper = null;
+    let history = null;
+
+
     await act(async () => {
         // Mount is use because of dangerouslySetInnerHTML should render correctly
-        wrapper = mount(
-            <Pagination page={page} total_pages={total}/>
-        );
+        const result = renderWithRouter(<Pagination page={page} total_pages={total}/>);
+
+        wrapper = result.wrapper
+        history = result.history
     })
 
-    return wrapper;
+    return {wrapper, history};
 }
 
 test('should render only next button on first page', async () => {
-    let wrapper = await renderComponent(1, 2);
+    let {wrapper} = await renderComponent(1, 2);
     const nextButton = wrapper.find('.next');
     const prevButton = wrapper.find('.prev');
     const hr = wrapper.find('hr');
@@ -27,7 +33,7 @@ test('should render only next button on first page', async () => {
 });
 
 test('should render only prev button on last page', async () => {
-    let wrapper = await renderComponent(2, 2);
+    let {wrapper} = await renderComponent(2, 2);
     const nextButton = wrapper.find('.next');
     const prevButton = wrapper.find('.prev');
     const hr = wrapper.find('hr');
@@ -39,7 +45,7 @@ test('should render only prev button on last page', async () => {
 
 
 test('should render prev and next button if is not last or first page', async () => {
-    let wrapper = await renderComponent(2, 3);
+    let {wrapper} = await renderComponent(2, 3);
     const nextButton = wrapper.find('.next');
     const prevButton = wrapper.find('.prev');
     const hr = wrapper.find('hr');
@@ -51,7 +57,7 @@ test('should render prev and next button if is not last or first page', async ()
 
 
 test('should doesn\'t render buttons or hr', async () => {
-    let wrapper = await renderComponent(1, 1);
+    let {wrapper} = await renderComponent(1, 1);
     const nextButton = wrapper.find('.next');
     const prevButton = wrapper.find('.prev');
     const hr = wrapper.find('hr');
@@ -59,4 +65,37 @@ test('should doesn\'t render buttons or hr', async () => {
     expect(nextButton.exists()).toBeFalsy();
     expect(prevButton.exists()).toBeFalsy();
     expect(hr.exists()).toBeFalsy();
+});
+
+test('should change location to page 3 when click next', async () => {
+
+    let {wrapper, history} = await renderComponent(2, 3);
+
+
+    const nextButton = wrapper.find('.next');
+
+    expect(history.location.search).toEqual("");
+
+    await act(async () => {
+        nextButton.simulate('click')
+    })
+
+    expect(history.location.search).toEqual("?page=3");
+});
+
+
+test('should change location to page 1 when click prev', async () => {
+
+    let {wrapper, history} = await renderComponent(2, 3);
+
+
+    const nextButton = wrapper.find('.prev');
+
+    expect(history.location.search).toEqual("");
+
+    await act(async () => {
+        nextButton.simulate('click')
+    })
+
+    expect(history.location.search).toEqual("?page=1");
 });
