@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 export const storage = {
     getItem(sKey) {
         if (!sKey || !this.hasOwnProp(sKey)) {
@@ -32,7 +33,6 @@ export const storage = {
     },
 };
 
-/* eslint-disable no-useless-escape */
 export default () => {
     if (!window.localStorage) {
         window.localStorage = storage;
