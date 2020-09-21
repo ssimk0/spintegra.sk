@@ -4,10 +4,9 @@ import i18n from "../../utils/i18n";
 import {useForm} from "react-hook-form";
 import {uploadImage} from "../../utils/uploadImage";
 
-import {ContentState, EditorState} from 'draft-js';
-import {stateToHTML} from 'draft-js-export-html';
+import { EditorState} from 'draft-js';
 import Loader from "../Loader";
-import htmlToDraft from 'html-to-draftjs';
+import {fromDraftStateToHtml, fromHtmlToDraftState} from "../../utils/editor";
 
 const Editor = React.lazy(() => import('react-draft-wysiwyg').then(module => {
     return {default: module.Editor}
@@ -17,19 +16,16 @@ const Editor = React.lazy(() => import('react-draft-wysiwyg').then(module => {
 function PageForm({page, onSubmit}) {
 
     const {handleSubmit, register, errors} = useForm();
-    let content = EditorState ? EditorState.createEmpty() : {}
-    if (page.body && htmlToDraft) {
-        const blocksFromHtml = htmlToDraft(page.body);
-        const {contentBlocks, entityMap} = blocksFromHtml;
-        const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
-        content = EditorState.createWithContent(contentState);
+    let content = EditorState.createEmpty();
+    if (page.body) {
+        content = fromHtmlToDraftState(page.body);
     }
 
     const [contentState, onEditorStateChange] = useState(content);
 
     return (
-        <div>
-            <form onSubmit={handleSubmit((v) => onSubmit({...v, body: stateToHTML(contentState.getCurrentContent())}))}
+        <div className="page-form">
+            <form onSubmit={handleSubmit((v) => onSubmit({...v, body: fromDraftStateToHtml(contentState)}))}
                   className="rounded px-8 pt-6 pb-8 mb-4">
                 <div className="form-group">
                     <label>

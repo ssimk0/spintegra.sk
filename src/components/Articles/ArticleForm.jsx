@@ -1,0 +1,97 @@
+import React, {Suspense, useState} from "react";
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import i18n from "../../utils/i18n";
+import {useForm} from "react-hook-form";
+import {uploadImage} from "../../utils/uploadImage";
+
+import {EditorState} from 'draft-js';
+import Loader from "../Loader";
+import {fromDraftStateToHtml, fromHtmlToDraftState} from "../../utils/editor";
+
+const Editor = React.lazy(() => import('react-draft-wysiwyg').then(module => {
+    return {default: module.Editor}
+}));
+
+
+function ArticleForm({article = {}, onSubmit}) {
+    const {handleSubmit, register, errors} = useForm();
+
+    let content = EditorState.createEmpty()
+    let short = EditorState.createEmpty()
+
+    if (article && article.body) {
+        content = fromHtmlToDraftState(article.body);
+    }
+
+
+    if (article && article.short) {
+        short = fromHtmlToDraftState(article.short);
+    }
+
+    const [bodyState, onBodyStateChange] = useState(content);
+    const [shortState, onShortStateChange] = useState(short);
+    return (
+        <div className="article-form">
+            <form onSubmit={handleSubmit((v) => onSubmit({
+                ...v,
+                body: fromDraftStateToHtml(bodyState),
+                short: fromDraftStateToHtml(shortState)
+            }))}
+                  className="rounded px-8 pt-6 pb-8 mb-4">
+                <div className="form-group">
+                    <label>
+                        {i18n.t("form.pages.Title")}
+                    </label>
+                    <input
+                        type="text"
+                        name="title"
+                        defaultValue={article.title}
+                        placeholder={i18n.t("form.articles.Title")}
+                        ref={register({
+                            required: i18n.t("form.validationMessages.required", {field: i18n.t("form.articles.Title")}),
+                        })}
+                    />
+                    <span className="input-error">
+                        {errors.title && errors.title.message}
+                    </span>
+                </div>
+                <Suspense fallback={<Loader/>}>
+                    <Editor
+                        editorState={bodyState}
+                        toolbarClassName="toolbarClassName"
+                        wrapperClassName="wrapperClassName"
+                        editorClassName="editorClassName"
+                        uploadEnabled={true}
+                        uploadCallback={uploadImage}
+                        onEditorStateChange={onBodyStateChange}
+                    />
+                </Suspense>
+                <Suspense fallback={<Loader/>}>
+                    <Editor
+                        editorState={shortState}
+                        toolbarClassName="toolbarClassName"
+                        wrapperClassName="wrapperClassName"
+                        editorClassName="editorClassName"
+                        uploadEnabled={true}
+                        uploadCallback={uploadImage}
+                        onEditorStateChange={onShortStateChange}
+                    />
+                </Suspense>
+                <div className="form-group">
+
+                    <input className="mr-2 leading-tight"
+                           ref={register()}
+                           type="checkbox" name="published"
+                           defaultChecked={article.published}/>
+                    <span className="text-sm">
+                     {i18n.t("form.article.Published")}
+                    </span>
+                </div>
+                <button type="submit" className="btn">{i18n.t("form.articles.Submit")}</button>
+            </form>
+        </div>
+    )
+}
+
+
+export default ArticleForm;

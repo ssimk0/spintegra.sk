@@ -36,11 +36,11 @@
     }
 }
 
-input {
+input:not([type='checkbox']) {
     @apply bg-white border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal
 }
 
-input:focus {
+input:not([type='checkbox']):focus {
     @apply outline-none shadow-outline
 }
 

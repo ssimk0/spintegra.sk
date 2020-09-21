@@ -12,7 +12,10 @@
     },
     "articles": {
         "created": "Vytvorené",
-        "top": "Najčitanejšie"
+        "top": "Najčitanejšie",
+        "create": {
+            "title": "Vytvoriť článok"
+        }
     },
     "actions": {
         "logout": "Odhlásiť"

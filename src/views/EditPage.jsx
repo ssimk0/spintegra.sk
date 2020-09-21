@@ -30,7 +30,7 @@ function EditPage({pageService}) {
     }, [pageService, dispatch, slug, category])
 
     return isLoading ? <Loader/> : (
-        <PageForm page={page} mode="edit" onSubmit={handleEdit}/>
+        <PageForm page={page} onSubmit={handleEdit}/>
     )
 }
 

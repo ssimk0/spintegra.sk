@@ -698,9 +698,17 @@ video {
   font-size: 1.5rem;
 }
 
+.leading-tight {
+  line-height: 1.25;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
+}
+
+.mr-2 {
+  margin-right: 0.5rem;
 }
 
 .mb-4 {
@@ -940,7 +948,7 @@ video {
   }
 }
 
-input {
+input:not([type='checkbox']) {
   --bg-opacity: 1;
   background-color: #fff;
   background-color: rgba(255, 255, 255, var(--bg-opacity));
@@ -961,7 +969,7 @@ input {
   line-height: 1.5
 }
 
-input:focus {
+input:not([type='checkbox']):focus {
   outline: 0;
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5)
 }

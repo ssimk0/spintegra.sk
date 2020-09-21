@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {mount} from 'enzyme';
-import PageForm from "./PageForm";
+import ArticleForm from "./ArticleForm";
 import {act} from "react-dom/test-utils";
 
-describe('Page form test', () => {
+describe('Article form test', () => {
     let wrapper
     let mockSubmit
 
@@ -11,31 +11,35 @@ describe('Page form test', () => {
     beforeEach(async () => {
         mockSubmit = jest.fn();
 
-        const testPage = {
-            title: 'test',
-            body: 'body test'
+        const testArticle = {
+            body: 'body test',
+            short: 'short',
         }
 
         await act(async () => {
             wrapper = mount(
-                <PageForm page={testPage} onSubmit={mockSubmit}/>
+                <ArticleForm article={testArticle} onSubmit={mockSubmit}/>
             )
         })
     })
 
     test('should call submit callback after submit form', async () => {
         const title = wrapper.find("input[name='title']")
+        const published = wrapper.find("input[name='published']")
         const button = wrapper.find("button[type='submit']")
 
 
         await act(async () => {
             title.instance().value = "new one";
+            published.instance().checked = true;
             button.simulate('submit')
         })
 
         expect(mockSubmit.mock.calls).toEqual([
             [{
                 "body": "<p>body test</p>",
+                "published": true,
+                "short": "<p>short</p>",
                 "title": 'new one'
             }]
         ]);

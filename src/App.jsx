@@ -12,6 +12,7 @@ import Login from "./views/Login";
 import UserService from "./service/user";
 import EditPage from "./views/EditPage";
 import i18n from "./utils/i18n";
+import CreateArticle from "./views/CreateArticle";
 
 function App({pageService}) {
     const [show, setShow] = useState(false);
@@ -82,6 +83,9 @@ function App({pageService}) {
                         </Route>
                         <Route path="/Login">
                             <Login userService={UserService}/>
+                        </Route>
+                        <Route path="/articles/create">
+                            <CreateArticle articleService={ArticleService}/>
                         </Route>
                         <Route path="/articles">
                             <News articleService={ArticleService}/>
