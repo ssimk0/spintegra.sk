@@ -57,6 +57,9 @@ function ArticleForm({article = {}, onSubmit}) {
                     </span>
                 </div>
                 <Suspense fallback={<Loader/>}>
+                    <label>
+                        {i18n.t("form.article.Content")}
+                    </label>
                     <Editor
                         editorState={bodyState}
                         toolbarClassName="toolbarClassName"
@@ -68,6 +71,9 @@ function ArticleForm({article = {}, onSubmit}) {
                     />
                 </Suspense>
                 <Suspense fallback={<Loader/>}>
+                    <label>
+                        {i18n.t("form.article.Short")}
+                    </label>
                     <Editor
                         editorState={shortState}
                         toolbarClassName="toolbarClassName"
@@ -78,8 +84,9 @@ function ArticleForm({article = {}, onSubmit}) {
                         onEditorStateChange={onShortStateChange}
                     />
                 </Suspense>
-
-                <button type="submit" className="btn">{i18n.t("form.article.Submit")}</button>
+                <div className="pt-2">
+                    <button type="submit" className="btn">{i18n.t("form.article.Submit")}</button>
+                </div>
             </form>
         </div>
     )

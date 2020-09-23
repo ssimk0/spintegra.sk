@@ -71,3 +71,7 @@ label {
 .disabled {
     @apply opacity-50 cursor-not-allowed;
 }
+
+.wrapperClassName {
+    @apply  pb-4
+}

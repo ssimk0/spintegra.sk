@@ -2,7 +2,7 @@ import React from 'react';
 import {MemoryRouter, Route, Switch} from 'react-router-dom';
 import {mount} from 'enzyme';
 import {act} from 'react-dom/test-utils';
-import Page from './Page';
+import Article from './Article';
 import * as AppContext from '../../context/app';
 
 
@@ -19,12 +19,12 @@ const testService = {
             body: "<h4>New awesome page body</h4>"
         }
     },
-    getPage(slug, category) {
+    getArticle(slug) {
         const page = this.pages[slug] || {};
-        page.category = category
         return Promise.resolve(page);
     }
 }
+
 const defaultContext = {
     state: {},
     dispatch: () => {
@@ -43,10 +43,10 @@ async function renderComponent(slug = "test", context = defaultContext, service=
 
     await act(async () => {
         wrapper = mount(
-            <MemoryRouter initialEntries={[`/page/menu/${slug}`]}>
+            <MemoryRouter initialEntries={[`/articles/${slug}`]}>
                 <Switch>
-                    <Route path="/page/:category/:slug">
-                        <Page pageService={service}/>
+                    <Route path="/articles/:slug">
+                        <Article articleService={service}/>
                     </Route>
                 </Switch>
             </MemoryRouter>
@@ -56,20 +56,21 @@ async function renderComponent(slug = "test", context = defaultContext, service=
     return wrapper;
 }
 
-test('should call getPage on service', async () => {
+test('should call getArticle on service', async () => {
     const mockFn = jest.fn();
 
     mockFn.mockReturnValue(Promise.resolve({}));
 
     await renderComponent("test", defaultContext, {
-        getPage: mockFn
+        state: {},
+        getArticle: mockFn
     });
 
-    expect(mockFn.mock.calls).toEqual([["test", "menu"]]);
+    expect(mockFn.mock.calls).toEqual([["test"]]);
 });
 
 
-test('should call dispatch set page title with slug', async () => {
+test('should call dispatch set article title with slug', async () => {
     const mockFn = jest.fn();
 
     mockFn.mockReturnValue(true);

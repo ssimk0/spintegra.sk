@@ -31,7 +31,7 @@ function App({pageService, userService}) {
     const {dispatch, state} = useAppContext();
 
     useEffect(() => {
-        if (state.user == null && state.token != null) {
+        if (state.user == null && state.token != null && state.menuItems.length) {
             setLoading(true);
             userService.userInfo().then((userInfo) => {
                 loadMenuItems(pageService, state.menuItems).then((response) => {
@@ -48,7 +48,7 @@ function App({pageService, userService}) {
             })
         }
 
-    }, [dispatch, pageService, state.menuItems, state.user, state.token]);
+    }, [dispatch, pageService, state.menuItems, state.user, state.token, userService]);
 
     useEffect(() => {
         document.title = "Integra - " + state.title
@@ -73,7 +73,7 @@ function App({pageService, userService}) {
     }
 
     return !loading ? (
-        <Router>
+        <Router forceRefresh={true}>
             <div>
                 <nav className="flex items-center justify-between flex-wrap py-6 shadow sm:shadow-md">
                     <div className="block lg:hidden ml-4">
@@ -123,7 +123,7 @@ function App({pageService, userService}) {
                         <ProtectedRoute neededPerm="editor" path="/pages/:category/:slug/edit">
                             <EditPage pageService={PageService}/>
                         </ProtectedRoute>
-                        <Route path="/pages/:category/:slug">
+                        <Route path="/pages/:category/:slug" >
                             <Page pageService={PageService}/>
                         </Route>
                         <Route path="*">

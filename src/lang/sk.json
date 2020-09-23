@@ -17,7 +17,11 @@
     },
     "articles": {
         "created": "Vytvorené",
-        "top": "Najčitanejšie"
+        "top": "Najčitanejšie",
+        "link": {
+            "create": "Vytvoriť",
+            "edit": "Upraviť"
+        }
     },
     "actions": {
         "logout": "Odhlásiť"

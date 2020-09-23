@@ -1,10 +1,11 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import i18n from "../../utils/i18n";
 
 
-function ArticleList(props) {
-    const { articles } = props;
+function ArticleList({articles, user}) {
     let articleList = [];
+    let createLink;
 
     if (articles && articles.length) {
         articleList = articles.map((article) => (
@@ -16,8 +17,17 @@ function ArticleList(props) {
         ))
     }
 
+    if (user && (user.can_edit || user.is_admin)) {
+        createLink = (
+            <div className="text-right">
+                <Link to="/articles/create" className="btn">{i18n.t('articles.link.create')}</Link>
+            </div>
+        )
+    }
+
     return (
         <div id="news" className="grid">
+            {createLink}
             <ul className="grid-cols-12">
                 {articleList}
             </ul>

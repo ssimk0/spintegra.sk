@@ -7,6 +7,7 @@ import {MemoryRouter} from "react-router-dom";
 
 
 const defaultContext = {
+    state: {},
     dispatch: () => {
         return {}
     }
@@ -44,6 +45,7 @@ test('should call dispatch set page title with static text', async () => {
     mockFn.mockReturnValue(true);
 
     await renderComponent({
+        state: {},
         dispatch: mockFn
     });
 
@@ -56,6 +58,7 @@ test('should call service', async () => {
     mockFn.mockReturnValue(true);
 
     const {mockGetNews} = await renderComponent({
+        state: {},
         dispatch: mockFn
     });
 

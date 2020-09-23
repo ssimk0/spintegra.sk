@@ -2,7 +2,7 @@ import {Route, Redirect} from "react-router-dom";
 import React from "react";
 import {useAppContext} from "../../context/app";
 
-function isAllowed(permType, user) {
+export function isAllowed(permType, user) {
     if (permType === 'admin') {
         return user && user.is_admin
     } else if (permType === 'editor') {
@@ -18,8 +18,7 @@ function isAllowed(permType, user) {
 
 function ProtectedRoute({children, neededPerm, ...rest}) {
     const {state} = useAppContext();
-    console.log(state.user);
-    console.log(isAllowed(neededPerm, state.user));
+
     return (
         <Route
             {...rest}

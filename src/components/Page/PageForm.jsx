@@ -14,7 +14,6 @@ const Editor = React.lazy(() => import('react-draft-wysiwyg').then(module => {
 
 
 function PageForm({page, onSubmit}) {
-
     const {handleSubmit, register, errors} = useForm();
     let content = EditorState.createEmpty();
     if (page.body) {

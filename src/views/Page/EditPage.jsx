@@ -9,6 +9,7 @@ import i18n from "../../utils/i18n";
 
 function EditPage({pageService}) {
     const [page, setPage] = useState(null);
+    const [loading, setLoading] = useState(true);
     const {dispatch} = useAppContext();
     const history = useHistory();
 
@@ -21,14 +22,15 @@ function EditPage({pageService}) {
     };
 
     useEffect(() => {
+        setLoading(true)
         pageService.getPage(slug, category).then((page) => {
             setPage(page);
-
+            setLoading(false)
             dispatch({type: SET_PAGE_TITLE, value: `${i18n.t('pages.page.edit')}: ${page.title}`});
         })
     }, [pageService, dispatch, slug, category])
 
-    return page === null ? <Loader/> : (
+    return loading ? <Loader/> : (
         <PageForm page={page} onSubmit={handleEdit}/>
     )
 }

@@ -4,3 +4,13 @@
 .pagination .next {
     text-align: right;
 }
+
+.toolbarClassName {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.editorClassName {
+    border: 1px solid #F1F1F1;
+    border-top: 0;
+}

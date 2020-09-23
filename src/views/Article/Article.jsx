@@ -7,7 +7,7 @@ import ArticleView from "../../components/Articles/View";
 
 function Article({articleService}) {
     const [article, setArticle] = useState(null);
-    const {dispatch} = useAppContext();
+    const {state, dispatch} = useAppContext();
 
     const {slug} = useParams();
 
@@ -19,7 +19,7 @@ function Article({articleService}) {
         })
     }, [articleService, dispatch, slug])
 
-    return article === null ? <Loader/> : <ArticleView article={article}/>
+    return article === null ? <Loader/> : <ArticleView article={article} user={state.user}/>
 }
 
 export default Article;

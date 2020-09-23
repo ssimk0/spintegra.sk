@@ -9,7 +9,7 @@ import {useLocation} from 'react-router-dom';
 
 function Articles({articleService}) {
     const [articles, setArticles] = useState(null);
-    const {dispatch} = useAppContext();
+    const {state, dispatch} = useAppContext();
     const query = new URLSearchParams(useLocation().search);
     const page = query.get("page");
 
@@ -23,7 +23,7 @@ function Articles({articleService}) {
 
     return articles === null ? <Loader/> : (
         <div>
-            <ArticleList articles={articles.articles}/>
+            <ArticleList articles={articles.articles} user={state.user}/>
             <Pagination page={articles.page} total_pages={articles.total_pages}/>
         </div>
     )
