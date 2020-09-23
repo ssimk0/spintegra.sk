@@ -34,21 +34,22 @@ function ArticleForm({article = {}, onSubmit}) {
         <div className="article-form">
             <form onSubmit={handleSubmit((v) => onSubmit({
                 ...v,
+                published: true,
                 body: fromDraftStateToHtml(bodyState),
                 short: fromDraftStateToHtml(shortState)
             }))}
                   className="rounded px-8 pt-6 pb-8 mb-4">
                 <div className="form-group">
                     <label>
-                        {i18n.t("form.pages.Title")}
+                        {i18n.t("form.article.Title")}
                     </label>
                     <input
                         type="text"
                         name="title"
                         defaultValue={article.title}
-                        placeholder={i18n.t("form.articles.Title")}
+                        placeholder={i18n.t("form.article.Title")}
                         ref={register({
-                            required: i18n.t("form.validationMessages.required", {field: i18n.t("form.articles.Title")}),
+                            required: i18n.t("form.validationMessages.required", {field: i18n.t("form.article.Title")}),
                         })}
                     />
                     <span className="input-error">
@@ -77,17 +78,8 @@ function ArticleForm({article = {}, onSubmit}) {
                         onEditorStateChange={onShortStateChange}
                     />
                 </Suspense>
-                <div className="form-group">
 
-                    <input className="mr-2 leading-tight"
-                           ref={register()}
-                           type="checkbox" name="published"
-                           defaultChecked={article.published}/>
-                    <span className="text-sm">
-                     {i18n.t("form.article.Published")}
-                    </span>
-                </div>
-                <button type="submit" className="btn">{i18n.t("form.articles.Submit")}</button>
+                <button type="submit" className="btn">{i18n.t("form.article.Submit")}</button>
             </form>
         </div>
     )

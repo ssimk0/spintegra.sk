@@ -42,10 +42,17 @@ async function renderComponent(context = defaultContext, service = testService) 
         .spyOn(AppContext, 'useAppContext')
         .mockImplementation(() => context);
 
+    const userService = {
+        userInfo() {
+            return Promise.resolve({
+                id: 1,
+            })
+        }
+    }
 
     await act(async () => {
         wrapper = mount(
-            <App pageService={service}/>
+            <App pageService={service} userService={userService}/>
         );
     })
 
@@ -74,7 +81,10 @@ test('should call dispatch set menu items to context', async () => {
         dispatch: mockFn
     });
 
-    expect(mockFn.mock.calls).toEqual([[{"type": "SET_MENU_ITEMS", "value": testService.pages}]]);
+    expect(mockFn.mock.calls).toEqual([
+        [{"type": "SET_MENU_ITEMS", "value": testService.pages}],
+        [{"type": "SET_PAGE_TITLE", "value": "Domov"}]
+    ]);
 });
 
 
@@ -88,6 +98,8 @@ test('should display menuItems in menu', async () => {
         },
         dispatch: mockFn
     });
+
+    wrapper.update();
 
     let first_link = wrapper.find('[href="/pages/menu/test"]')
     let second_link = wrapper.find('[href="/pages/menu/new"]')

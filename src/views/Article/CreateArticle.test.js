@@ -1,4 +1,4 @@
-import * as AppContext from "../context/app";
+import * as AppContext from "../../context/app";
 import {act} from "react-dom/test-utils";
 import {mount} from "enzyme";
 import {MemoryRouter} from "react-router-dom";

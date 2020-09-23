@@ -9,6 +9,7 @@ import setupApi from './api';
 import App from './App';
 import 'tailwind.output.css';
 import 'styles/main.css';
+import UserService from "./service/user";
 
 
 if (process.env === "production") {
@@ -25,7 +26,7 @@ setupApi()
 
 ReactDOM.render(
     <AppProvider>
-        <App pageService={PageService}/>
+        <App pageService={PageService} userService={UserService}/>
     </AppProvider>,
     document.getElementById('root')
 );

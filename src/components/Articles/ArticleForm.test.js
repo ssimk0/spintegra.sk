@@ -25,13 +25,11 @@ describe('Article form test', () => {
 
     test('should call submit callback after submit form', async () => {
         const title = wrapper.find("input[name='title']")
-        const published = wrapper.find("input[name='published']")
         const button = wrapper.find("button[type='submit']")
 
 
         await act(async () => {
             title.instance().value = "new one";
-            published.instance().checked = true;
             button.simulate('submit')
         })
 

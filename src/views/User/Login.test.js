@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {shallow} from 'enzyme';
-import * as AppContext from '../context/app';
+import * as AppContext from '../../context/app';
 import Login from "./Login";
 
-describe('Login page test', () => {
+describe('User page test', () => {
     let wrapper
     let mockDispatch
 

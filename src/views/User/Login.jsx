@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
 
-import {SET_PAGE_TITLE, useAppContext} from "../context/app";
+import {SET_PAGE_TITLE, useAppContext} from "../../context/app";
 import {useHistory} from 'react-router-dom';
-import LoginForm from "../components/Auth/LoginForm";
-import i18n from "../utils/i18n";
+import LoginForm from "../../components/Auth/LoginForm";
+import i18n from "../../utils/i18n";
 
 const Login = ({userService}) => {
     let history = useHistory();

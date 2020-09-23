@@ -1,8 +1,8 @@
 import React from 'react';
 import {mount} from 'enzyme';
 import {act} from 'react-dom/test-utils';
-import News from './News';
-import * as AppContext from '../context/app';
+import Articles from './Articles';
+import * as AppContext from '../../context/app';
 import {MemoryRouter} from "react-router-dom";
 
 
@@ -29,7 +29,7 @@ async function renderComponent(context = defaultContext) {
     await act(async () => {
         wrapper = mount(
             <MemoryRouter initialEntries={[`/articles`]}>
-                <News articleService={testService}/>
+                <Articles articleService={testService}/>
             </MemoryRouter>
         );
     })

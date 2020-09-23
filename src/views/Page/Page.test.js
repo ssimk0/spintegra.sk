@@ -1,10 +1,9 @@
-import * as AppContext from "../context/app";
-import {act} from "react-dom/test-utils";
-import {mount} from "enzyme";
-import {MemoryRouter, Route, Switch} from "react-router-dom";
-import PageEdit from "./EditPage";
-import React from "react";
-import * as Form from "react-hook-form";
+import React from 'react';
+import {MemoryRouter, Route, Switch} from 'react-router-dom';
+import {mount} from 'enzyme';
+import {act} from 'react-dom/test-utils';
+import Page from './Page';
+import * as AppContext from '../../context/app';
 
 
 const testService = {
@@ -35,15 +34,6 @@ const defaultContext = {
 async function renderComponent(slug = "test", context = defaultContext, service=testService) {
     let wrapper = null;
 
-    jest
-        .spyOn(Form, 'useForm')
-        .mockImplementation(() => {
-            return {
-                handleSubmit: (fn) => null,
-                register: (params) => null,
-                errors: (err) => null
-            }
-        });
 
     jest
         .spyOn(AppContext, 'useAppContext')
@@ -52,10 +42,10 @@ async function renderComponent(slug = "test", context = defaultContext, service=
 
     await act(async () => {
         wrapper = mount(
-            <MemoryRouter initialEntries={[`/page/menu/${slug}/edit`]}>
+            <MemoryRouter initialEntries={[`/page/menu/${slug}`]}>
                 <Switch>
-                    <Route path="/page/:category/:slug/edit">
-                        <PageEdit pageService={service}/>
+                    <Route path="/page/:category/:slug">
+                        <Page pageService={service}/>
                     </Route>
                 </Switch>
             </MemoryRouter>

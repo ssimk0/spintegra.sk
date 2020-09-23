@@ -2,29 +2,53 @@ import React, {useEffect, useState} from 'react';
 import {BrowserRouter as Router, NavLink, Route, Switch} from "react-router-dom";
 
 import Home from './views/Home';
-import {SET_MENU_ITEMS, useAppContext} from './context/app';
-import Page from "./views/Page";
+import {SET_MENU_ITEMS, SET_USER_INFO, useAppContext} from './context/app';
+import Page from "./views/Page/Page";
 import ArticleService from "./service/article";
 import PageService from "./service/page";
-import News from "./views/News";
+import Articles from "./views/Article/Articles";
 import Loader from "./components/Loader";
-import Login from "./views/Login";
+import Login from "./views/User/Login";
 import UserService from "./service/user";
-import EditPage from "./views/EditPage";
+import EditPage from "./views/Page/EditPage";
 import i18n from "./utils/i18n";
-import CreateArticle from "./views/CreateArticle";
+import CreateArticle from "./views/Article/CreateArticle";
+import EditArticle from "./views/Article/EditArticle";
+import Article from "./views/Article/Article";
+import NotFound from "./views/NotFound";
+import ProtectedRoute from "./components/Route/ProtectedRoute";
 
-function App({pageService}) {
+function loadMenuItems(pageService, menuItems) {
+    if (menuItems.length === 0) {
+        return pageService.getPagesByCategory("menu")
+    }
+    return Promise.resolve(menuItems)
+}
+
+function App({pageService, userService}) {
     const [show, setShow] = useState(false);
+    const [loading, setLoading] = useState(true);
     const {dispatch, state} = useAppContext();
 
     useEffect(() => {
-        if (state.menuItems.length === 0) {
-            pageService.getPagesByCategory("menu").then((response) => {
+        if (state.user == null && state.token != null) {
+            setLoading(true);
+            userService.userInfo().then((userInfo) => {
+                loadMenuItems(pageService, state.menuItems).then((response) => {
+                    dispatch({type: SET_MENU_ITEMS, value: response})
+                    dispatch({type: SET_USER_INFO, value: userInfo})
+                    setLoading(false);
+                });
+            });
+        } else {
+            setLoading(true);
+            loadMenuItems(pageService, state.menuItems).then((response) => {
                 dispatch({type: SET_MENU_ITEMS, value: response})
+                setLoading(false);
             })
         }
-    }, [dispatch, pageService, state.menuItems.length]);
+
+    }, [dispatch, pageService, state.menuItems, state.user, state.token]);
 
     useEffect(() => {
         document.title = "Integra - " + state.title
@@ -48,7 +72,7 @@ function App({pageService}) {
         })
     }
 
-    return menuList.length ? (
+    return !loading ? (
         <Router>
             <div>
                 <nav className="flex items-center justify-between flex-wrap py-6 shadow sm:shadow-md">
@@ -81,20 +105,29 @@ function App({pageService}) {
                         <Route exact path="/">
                             <Home/>
                         </Route>
-                        <Route path="/Login">
+                        <ProtectedRoute neededPerm="notLogged" path="/Login">
                             <Login userService={UserService}/>
-                        </Route>
-                        <Route path="/articles/create">
+                        </ProtectedRoute>
+                        <ProtectedRoute neededPerm="editor" path="/articles/create">
                             <CreateArticle articleService={ArticleService}/>
+                        </ProtectedRoute>
+                        <Route path="/articles" exact>
+                            <Articles articleService={ArticleService}/>
                         </Route>
-                        <Route path="/articles">
-                            <News articleService={ArticleService}/>
+                        <ProtectedRoute neededPerm="editor" path="/articles/:slug/edit">
+                            <EditArticle articleService={ArticleService}/>
+                        </ProtectedRoute>
+                        <Route path="/articles/:slug">
+                            <Article articleService={ArticleService}/>
                         </Route>
-                        <Route path="/pages/:category/:slug/edit">
+                        <ProtectedRoute neededPerm="editor" path="/pages/:category/:slug/edit">
                             <EditPage pageService={PageService}/>
-                        </Route>
+                        </ProtectedRoute>
                         <Route path="/pages/:category/:slug">
                             <Page pageService={PageService}/>
+                        </Route>
+                        <Route path="*">
+                            <NotFound/>
                         </Route>
                     </Switch>
                 </div>

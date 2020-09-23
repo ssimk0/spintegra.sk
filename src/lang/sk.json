@@ -7,15 +7,17 @@
             "menuName": "Domov"
         },
         "articles": {
-            "menuName": "Aktuality"
+            "menuName": "Aktuality",
+            "create": "Vytvoriť článok",
+            "edit": "Upraviť článok"
+        },
+        "page": {
+            "edit": "Upraviť stránku"
         }
     },
     "articles": {
         "created": "Vytvorené",
-        "top": "Najčitanejšie",
-        "create": {
-            "title": "Vytvoriť článok"
-        }
+        "top": "Najčitanejšie"
     },
     "actions": {
         "logout": "Odhlásiť"

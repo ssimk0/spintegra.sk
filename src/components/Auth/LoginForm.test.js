@@ -5,7 +5,7 @@ import LoginForm from "./LoginForm";
 import axios from "axios";
 import {act} from "react-dom/test-utils";
 
-describe('Login form test', () => {
+describe('User form test', () => {
     let wrapper
     let mockDispatch
 
