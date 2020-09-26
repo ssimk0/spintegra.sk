@@ -91,12 +91,12 @@ test('should call dispatch set page title with slug', async () => {
 });
 
 test('should display a loader on start', async () => {
-    let wrapper = await renderComponent("test");
+    let wrapper = await renderComponent("new");
 
     let loader = wrapper.find('.loader')
 
     expect(loader.exists()).toBeTruthy();
-    wrapper.update() // update will update the component and recieve the page
+    wrapper.update() // update will update the component and recieve the edit page
 
     loader = wrapper.find('.loader')
     expect(loader.exists()).toBeFalsy();

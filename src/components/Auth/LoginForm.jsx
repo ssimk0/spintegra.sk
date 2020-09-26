@@ -3,10 +3,12 @@ import {SET_TOKEN, SET_USER_INFO, useAppContext} from "../../context/app";
 import i18n from "../../utils/i18n";
 import React from "react";
 import {useForm} from "react-hook-form";
+import {Link, useHistory} from "react-router-dom";
 
 function LoginForm({userService}) {
     const {handleSubmit, register, errors} = useForm();
     const {dispatch} = useAppContext();
+    const history = useHistory();
 
     const onSubmit = values => {
         userService.login(values).then((token) => {
@@ -14,6 +16,8 @@ function LoginForm({userService}) {
             userService.userInfo().then((info) => {
                 dispatch({type: SET_USER_INFO, value: info});
                 dispatch({type: SET_TOKEN, value: token.token});
+
+                history.push('/');
             });
         })
     };
@@ -57,6 +61,10 @@ function LoginForm({userService}) {
                     {errors.password && errors.password.message}
                 </span>
             </div>
+            <p className="mb-2">
+                <Link to="/forgot-password"
+                      className="text-blue-500 hover:text-blue-800 ">{i18n.t('pages.forgotPassword.menuName')}</Link>
+            </p>
             <button type="submit" className="btn">{i18n.t("form.login.Submit")}</button>
         </form>
     )

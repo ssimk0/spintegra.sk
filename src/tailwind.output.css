@@ -703,6 +703,10 @@ video {
   margin-right: auto;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
 }
@@ -794,6 +798,12 @@ video {
   color: rgba(160, 174, 192, var(--text-opacity));
 }
 
+.text-orange-400 {
+  --text-opacity: 1;
+  color: #f6ad55;
+  color: rgba(246, 173, 85, var(--text-opacity));
+}
+
 .text-blue-500 {
   --text-opacity: 1;
   color: #4299e1;
@@ -818,6 +828,10 @@ video {
 
 .w-3 {
   width: 0.75rem;
+}
+
+.w-6\/12 {
+  width: 50%;
 }
 
 .w-full {

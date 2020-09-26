@@ -4,6 +4,7 @@ import * as AppContext from '../../context/app';
 import LoginForm from "./LoginForm";
 import axios from "axios";
 import {act} from "react-dom/test-utils";
+import {MemoryRouter} from "react-router-dom";
 
 describe('User form test', () => {
     let wrapper
@@ -35,7 +36,9 @@ describe('User form test', () => {
 
 
         wrapper = mount(
-            <LoginForm userService={testService}/>
+            <MemoryRouter>
+                <LoginForm userService={testService}/>
+            </MemoryRouter>
         )
     })
 

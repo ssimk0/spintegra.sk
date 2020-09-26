@@ -13,6 +13,12 @@
         },
         "page": {
             "edit": "Upraviť stránku"
+        },
+        "forgotPassword": {
+            "menuName": "Zabudnuté heslo"
+        },
+        "resetPassword": {
+            "title": "Reset hesla"
         }
     },
     "articles": {
@@ -25,6 +31,9 @@
     },
     "actions": {
         "logout": "Odhlásiť"
+    },
+    "forgotPassword": {
+        "success": "Postup pre reset hesla najdeš vo svojom emaile, ak si zadal správny email"
     },
     "form": {
         "login": {
@@ -44,9 +53,19 @@
             "Body": "Obash",
             "Submit": "Uložiť"
         },
+        "resetPassword": {
+            "Password": "Heslo",
+            "PasswordConfirm": "Potvrdenie hesla",
+            "Submit": "Uložiť"
+        },
         "validationMessages": {
             "required": "Pole '{{field}}' je povinné",
-            "invalid_format": "Pole '{{field}}' nieje v spravnom formáte"
+            "invalid_format": "Pole '{{field}}' nieje v spravnom formáte",
+            "confirm": "Hesla musia byť rovnaké"
+        },
+        "forgotPassword": {
+            "Email": "Email",
+            "Submit": "Odoslať"
         }
     },
     "pagination": {

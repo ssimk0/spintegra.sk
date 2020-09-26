@@ -17,6 +17,9 @@ import EditArticle from "./views/Article/EditArticle";
 import Article from "./views/Article/Article";
 import NotFound from "./views/NotFound";
 import ProtectedRoute from "./components/Route/ProtectedRoute";
+import ForgotPassword from "./views/User/ForgotPassword";
+import ForgotPasswordSuccess from "./views/User/ForgotPasswordSuccess";
+import ResetPassword from "./views/User/ResetPassword";
 
 function loadMenuItems(pageService, menuItems) {
     if (menuItems.length === 0) {
@@ -105,8 +108,17 @@ function App({pageService, userService}) {
                         <Route exact path="/">
                             <Home/>
                         </Route>
-                        <ProtectedRoute neededPerm="notLogged" path="/Login">
+                        <ProtectedRoute neededPerm="notLogged" path="/login">
                             <Login userService={UserService}/>
+                        </ProtectedRoute>
+                        <ProtectedRoute neededPerm="notLogged" path="/forgot-password/success">
+                            <ForgotPasswordSuccess userService={UserService}/>
+                        </ProtectedRoute>
+                        <ProtectedRoute neededPerm="notLogged" path="/forgot-password">
+                            <ForgotPassword userService={UserService}/>
+                        </ProtectedRoute>
+                        <ProtectedRoute neededPerm="notLogged" path="/reset-password">
+                            <ResetPassword userService={UserService}/>
                         </ProtectedRoute>
                         <ProtectedRoute neededPerm="editor" path="/articles/create">
                             <CreateArticle articleService={ArticleService}/>
