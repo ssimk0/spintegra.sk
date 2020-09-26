@@ -20,6 +20,12 @@ it('should correctly calculate isAllowed for notLogged', () => {
     expect(isAllowed('notLogged', {})).toBeFalsy()
 })
 
+it('should correctly calculate isAllowed for logged', () => {
+
+    expect(isAllowed('logged', null)).toBeFalsy()
+    expect(isAllowed('logged', {})).toBeTruthy()
+})
+
 it('should correctly calculate isAllowed for not valid or non type', () => {
 
     expect(isAllowed('notValid', {can_edit: true, is_admin: true})).toBeFalsy()
