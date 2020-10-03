@@ -20,6 +20,11 @@ import ProtectedRoute from "./components/Route/ProtectedRoute";
 import ForgotPassword from "./views/User/ForgotPassword";
 import ForgotPasswordSuccess from "./views/User/ForgotPasswordSuccess";
 import ResetPassword from "./views/User/ResetPassword";
+import Upload from "./views/Gallery/Upload";
+import GalleryService from "./service/gallery";
+import CreateUploadCategory from "./views/Gallery/CreateUploadCategory";
+import CategoryList from "./views/Gallery/CategoryList";
+import CategoryUploads from "./views/Gallery/CategoryUploads";
 
 function loadMenuItems(pageService, menuItems) {
     if (menuItems.length === 0) {
@@ -89,6 +94,9 @@ function App({pageService, userService}) {
                             </svg>
                         </button>
                     </div>
+                    <div className="block ml-4">
+                        <img src="/logo.png" alt="logo" className="lg:w-16 w-12"/>
+                    </div>
                     <div className={menuClass}>
                         <ul className="text-sm lg:flex-grow text-center lg:text-left">
                             <li className="lg:mr-4 block lg:inline-block">
@@ -99,6 +107,10 @@ function App({pageService, userService}) {
                                 <NavLink to="/articles"
                                          className="lg:mt-0 text-blue-500 hover:text-blue-800">{i18n.t("pages.articles.menuName")}</NavLink>
                             </li>
+                            <li className="lg:mr-4 block lg:inline-block">
+                                <NavLink to="/gallery"
+                                         className="lg:mt-0 text-blue-500 hover:text-blue-800">{i18n.t("pages.gallery.menuName")}</NavLink>
+                            </li>
                             {menuList}
                         </ul>
                     </div>
@@ -108,6 +120,8 @@ function App({pageService, userService}) {
                         <Route exact path="/">
                             <Home/>
                         </Route>
+
+
                         <ProtectedRoute neededPerm="notLogged" path="/login">
                             <Login userService={UserService}/>
                         </ProtectedRoute>
@@ -120,6 +134,8 @@ function App({pageService, userService}) {
                         <ProtectedRoute neededPerm="notLogged" path="/reset-password">
                             <ResetPassword userService={UserService}/>
                         </ProtectedRoute>
+
+
                         <ProtectedRoute neededPerm="editor" path="/articles/create">
                             <CreateArticle articleService={ArticleService}/>
                         </ProtectedRoute>
@@ -132,12 +148,34 @@ function App({pageService, userService}) {
                         <Route path="/articles/:slug">
                             <Article articleService={ArticleService}/>
                         </Route>
+
+
                         <ProtectedRoute neededPerm="editor" path="/pages/:category/:slug/edit">
                             <EditPage pageService={PageService}/>
                         </ProtectedRoute>
-                        <Route path="/pages/:category/:slug" >
+
+                        <Route path="/pages/:category/:slug">
                             <Page pageService={PageService}/>
                         </Route>
+
+
+                        <ProtectedRoute neededPerm="editor" path="/gallery/:category/upload">
+                            <Upload galleryService={GalleryService}/>
+                        </ProtectedRoute>
+
+                        <ProtectedRoute neededPerm="editor" path="/gallery/create">
+                            <CreateUploadCategory galleryService={GalleryService}/>
+                        </ProtectedRoute>
+
+                        <Route path="/gallery/:category">
+                            <CategoryUploads galleryService={GalleryService}/>
+                        </Route>
+
+                        <Route path="/gallery">
+                            <CategoryList galleryService={GalleryService}/>
+                        </Route>
+
+
                         <Route path="*">
                             <NotFound/>
                         </Route>

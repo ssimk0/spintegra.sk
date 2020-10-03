@@ -732,6 +732,11 @@ video {
   padding-bottom: 0.5rem;
 }
 
+.py-3 {
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+}
+
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
@@ -830,6 +835,10 @@ video {
   width: 0.75rem;
 }
 
+.w-12 {
+  width: 3rem;
+}
+
 .w-6\/12 {
   width: 50%;
 }
@@ -838,8 +847,16 @@ video {
   width: 100%;
 }
 
+.grid-flow-col {
+  grid-auto-flow: column;
+}
+
 .grid-cols-2 {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-cols-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .grid-cols-12 {
@@ -1172,6 +1189,10 @@ label {
 
   .lg\:text-left {
     text-align: left;
+  }
+
+  .lg\:w-16 {
+    width: 4rem;
   }
 
   .lg\:w-auto {

@@ -11,6 +11,9 @@
             "create": "Vytvoriť článok",
             "edit": "Upraviť článok"
         },
+        "gallery": {
+            "menuName": "Galeria"
+        },
         "page": {
             "edit": "Upraviť stránku"
         },
@@ -27,6 +30,13 @@
         "link": {
             "create": "Vytvoriť",
             "edit": "Upraviť"
+        }
+    },
+    "gallery": {
+        "uploadImagePlaceholder": "Obrázok gallerie",
+        "link": {
+            "create": "Vytvoriť Album",
+            "upload": "Nahrať fotky"
         }
     },
     "actions": {
@@ -58,14 +68,25 @@
             "PasswordConfirm": "Potvrdenie hesla",
             "Submit": "Uložiť"
         },
-        "validationMessages": {
-            "required": "Pole '{{field}}' je povinné",
-            "invalid_format": "Pole '{{field}}' nieje v spravnom formáte",
-            "confirm": "Hesla musia byť rovnaké"
-        },
         "forgotPassword": {
             "Email": "Email",
             "Submit": "Odoslať"
+        },
+        "gallery": {
+            "Upload": "Vyberte obrázky",
+            "UploadForm": "Vybrať",
+            "Submit": "Nahrať",
+            "Name": "Meno",
+            "Desc": "Popis",
+            "Create": "Vytvoriť",
+            "infoText": "Vyberte subory s priponou jpg, gif, png, jpeg a maximalnou veľkostou 5mb"
+        },
+        "validationMessages": {
+            "required": "Pole '{{field}}' je povinné",
+            "invalid_format": "Pole '{{field}}' nieje v spravnom formáte",
+            "confirm": "Hesla musia byť rovnaké",
+            "fileSize": "Veľkosť suboru je príliš veľká",
+            "fileExtension": "Typ súboru nieje podporovaný"
         }
     },
     "pagination": {
