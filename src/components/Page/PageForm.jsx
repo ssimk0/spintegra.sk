@@ -16,7 +16,7 @@ const Editor = React.lazy(() => import('react-draft-wysiwyg').then(module => {
 function PageForm({page, onSubmit}) {
     const {handleSubmit, register, errors} = useForm();
     let content = EditorState.createEmpty();
-    if (page.body) {
+    if (page && page.body) {
         content = fromHtmlToDraftState(page.body);
     }
 
@@ -33,7 +33,7 @@ function PageForm({page, onSubmit}) {
                     <input
                         type="text"
                         name="title"
-                        defaultValue={page.title}
+                        defaultValue={page ? page.title : ''}
                         placeholder={i18n.t("form.pages.Title")}
                         ref={register({
                             required: i18n.t("form.validationMessages.required", {field: i18n.t("form.pages.Title")}),

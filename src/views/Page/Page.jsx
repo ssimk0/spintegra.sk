@@ -8,21 +8,25 @@ import PageView from "../../components/Page/View";
 function Page({pageService}) {
     const [page, setPage] = useState(null);
     const {state, dispatch} = useAppContext();
+    const {slug, category, parent_slug} = useParams();
 
-    const {slug, category} = useParams();
+    let p = null;
 
     useEffect(() => {
-        if (page === null) {
-            pageService.getPage(slug, category).then((response) => {
+        if (page === null || (page && page.slug !== parent_slug)) {
+            pageService.getPage(parent_slug, category).then((response) => {
                 setPage(response);
                 dispatch({type: SET_PAGE_TITLE, value: response.title});
             })
         }
 
-    }, [pageService, page, slug, category, dispatch])
+    }, [pageService, page, parent_slug, category, dispatch])
 
+    if (page !== null && slug) {
+        p = page.children.find(page => page.slug === slug)
+    }
 
-    return page === null ? <Loader/> : <PageView page={page} user={state.user}/>
+    return page === null ? <Loader/> : <PageView page={p || page} parent_page={page} parent_slug={parent_slug} user={state.user}/>
 }
 
 export default Page;

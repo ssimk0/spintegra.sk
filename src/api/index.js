@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default function setup(t) {
-  axios.defaults.baseURL = 'http://localhost:8080';
+  axios.defaults.baseURL = 'http://localhost:8081';
   axios.interceptors.response.use(
     (response) => {
       return response;

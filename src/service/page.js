@@ -7,7 +7,8 @@ const PageService = {
     },
     getPagesByCategory(category) {
         return pages.byCategorySlug(category);
-    }
+    },
+
 }
 
 export default PageService

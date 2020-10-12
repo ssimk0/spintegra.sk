@@ -25,6 +25,7 @@ import GalleryService from "./service/gallery";
 import CreateUploadCategory from "./views/Gallery/CreateUploadCategory";
 import CategoryList from "./views/Gallery/CategoryList";
 import CategoryUploads from "./views/Gallery/CategoryUploads";
+import CreateSubPage from "./views/Page/CreateSubPage";
 
 function loadMenuItems(pageService, menuItems) {
     if (menuItems.length === 0) {
@@ -81,7 +82,7 @@ function App({pageService, userService}) {
     }
 
     return !loading ? (
-        <Router forceRefresh={true}>
+        <Router>
             <div>
                 <nav className="flex items-center justify-between flex-wrap py-6 shadow sm:shadow-md">
                     <div className="block lg:hidden ml-4">
@@ -153,11 +154,16 @@ function App({pageService, userService}) {
                         <ProtectedRoute neededPerm="editor" path="/pages/:category/:slug/edit">
                             <EditPage pageService={PageService}/>
                         </ProtectedRoute>
+                        <ProtectedRoute neededPerm="editor" path="/pages/:category/:id/create">
+                            <CreateSubPage pageService={PageService}/>
+                        </ProtectedRoute>
 
-                        <Route path="/pages/:category/:slug">
+                        <Route path="/pages/:category/:parent_slug/:slug">
                             <Page pageService={PageService}/>
                         </Route>
-
+                        <Route path="/pages/:category/:parent_slug">
+                            <Page pageService={PageService}/>
+                        </Route>
 
                         <ProtectedRoute neededPerm="editor" path="/gallery/:category/upload">
                             <Upload galleryService={GalleryService}/>

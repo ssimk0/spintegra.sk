@@ -32,6 +32,12 @@
             "edit": "Upraviť"
         }
     },
+    "page": {
+        "link": {
+            "create": "Vytrvoriť podstránku",
+            "edit": "Upraviť"
+        }
+    },
     "gallery": {
         "uploadImagePlaceholder": "Obrázok gallerie",
         "link": {

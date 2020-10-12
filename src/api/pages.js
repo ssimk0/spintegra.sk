@@ -12,5 +12,8 @@ export default {
             title: page.title,
             body: page.body
         })
+    },
+    create(category, data) {
+        return axios.post(`/api/v1/pages/${category}`, data).then((r) => r.data);
     }
 }
