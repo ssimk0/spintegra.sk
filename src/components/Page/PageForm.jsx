@@ -23,7 +23,7 @@ function PageForm({page, onSubmit}) {
     const [contentState, onEditorStateChange] = useState(content);
 
     return (
-        <div className="page-form">
+        <div className="page-form container mx-auto py-4">
             <form onSubmit={handleSubmit((v) => onSubmit({...v, body: fromDraftStateToHtml(contentState)}))}
                   className="rounded px-8 pt-6 pb-8 mb-4">
                 <div className="form-group">

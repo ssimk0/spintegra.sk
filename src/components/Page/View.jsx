@@ -35,7 +35,7 @@ function PageView({page, parent_page, user, parent_slug}) {
     }
 
     return (
-        <div id="page" className="grid grid-flow-col">
+        <div id="page" className="grid grid-flow-col container mx-auto py-4">
             {sideMenu}
             <div className="col-span-2">
                 <div className="text-right">

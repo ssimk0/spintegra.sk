@@ -18,7 +18,7 @@ const Login = ({userService}) => {
     }, [dispatch, state.token, history])
 
     return (
-        <div>
+        <div className="container mx-auto py-4">
             <div className="w-full max-w-md mx-auto">
                 <LoginForm userService={userService}/>
             </div>

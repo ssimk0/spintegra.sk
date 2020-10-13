@@ -13,7 +13,7 @@ const ForgotPassword = ({userService}) => {
     }, [dispatch])
 
     return (
-        <div>
+        <div className="container mx-auto py-4">
             <div className="w-full max-w-md mx-auto">
                 <ForgotPasswordForm userService={userService}/>
             </div>

@@ -15,7 +15,7 @@ function ArticleView({article, user}) {
     }
 
     return (
-        <div id="article">
+        <div id="article" className="container mx-auto py-4">
             <div className="text-right">
                 {editLink}
             </div>

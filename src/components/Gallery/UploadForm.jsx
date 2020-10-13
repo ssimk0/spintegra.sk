@@ -6,7 +6,7 @@ function UploadForm({onSubmit}) {
     const [images, setImages] = useState([]);
 
     return (
-        <form onSubmit={(e) => {
+        <form className="container mx-auto" onSubmit={(e) => {
             e.preventDefault();
             onSubmit(images);
         }}>

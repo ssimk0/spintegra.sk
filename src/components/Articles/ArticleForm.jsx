@@ -31,7 +31,7 @@ function ArticleForm({article = {}, onSubmit}) {
     const [bodyState, onBodyStateChange] = useState(content);
     const [shortState, onShortStateChange] = useState(short);
     return (
-        <div className="article-form">
+        <div className="article-form container mx-auto py-4">
             <form onSubmit={handleSubmit((v) => onSubmit({
                 ...v,
                 published: true,

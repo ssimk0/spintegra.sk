@@ -22,7 +22,7 @@ function Articles({articleService}) {
     }, [articleService, dispatch, page])
 
     return articles === null ? <Loader/> : (
-        <div>
+        <div className="container mx-auto py-4">
             <ArticleList articles={articles.articles} user={state.user}/>
             <Pagination page={articles.page} total_pages={articles.total_pages}/>
         </div>

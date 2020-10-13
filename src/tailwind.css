@@ -73,5 +73,25 @@ label {
 }
 
 .wrapperClassName {
-    @apply  pb-4
+    @apply pb-4
+}
+
+.main-menu .active {
+    @apply text-orange-600
+}
+
+.card {
+    @apply my-2 mx-4 p-8 bg-white shadow cursor-pointer
+}
+
+.card:hover {
+    @apply bg-orange-500
+}
+
+.card:hover .title {
+    @apply border-gray-700
+}
+
+.card .title {
+    @apply text-2xl border-b-4 py-2 border-gray-500
 }
