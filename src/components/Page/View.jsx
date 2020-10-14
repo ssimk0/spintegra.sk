@@ -22,29 +22,38 @@ function PageView({page, parent_page, user, parent_slug}) {
     }
 
     if (parent_page && parent_page.children && parent_page.children.length) {
+        let linkClass = "px-4 py-2"
         sideMenu = (
             <div>
-                <ul>
-                    <li>
-                        <NavLink to={`/pages/${parent_page.page_category.slug}/${parent_slug}`}>{parent_page.title}</NavLink>
+                <ul className="text-left">
+                    <li className={linkClass}>
+                        <NavLink to={`/pages/${parent_page.page_category.slug}/${parent_slug}`}
+                                 exact>{parent_page.title}</NavLink>
                     </li>
-                    {parent_page.children.map((child) => (<li key={child.id}><NavLink to={`/pages/${child.page_category.slug}/${parent_slug}/${child.slug}`}>{child.title}</NavLink></li>))}
+                    {parent_page.children.map((child) => (<li className={linkClass} key={child.id}><NavLink
+                        to={`/pages/${child.page_category.slug}/${parent_slug}/${child.slug}`}>{child.title}</NavLink>
+                    </li>))}
+
                 </ul>
             </div>
         )
     }
 
     return (
-        <div id="page" className="grid grid-flow-col container mx-auto py-4">
-            {sideMenu}
-            <div className="col-span-2">
+        <div id="page" className="container mx-auto py-4">
+            <div>
                 <div className="text-right">
                     {createLink}
                     {editLink}
                 </div>
-                <h2 className="title">{page.title}</h2>
-                <hr/>
-                <div className="content" dangerouslySetInnerHTML={{__html: page.body}}>
+            </div>
+            <div className="grid grid-cols-4">
+                {sideMenu}
+                <div className="col-span-2">
+
+                    <span className="title">{page.title}</span>
+                    <div className="content pt-4" dangerouslySetInnerHTML={{__html: page.body}}>
+                    </div>
                 </div>
             </div>
         </div>

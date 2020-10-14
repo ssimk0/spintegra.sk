@@ -119,7 +119,7 @@ function App({pageService, userService}) {
                         </div>
                     </nav>
                 </div>
-                <div className="mt-24">
+                <div className="mt-24 main-content-wrapper">
                     <Switch>
                         <Route exact path="/">
                             <Home/>

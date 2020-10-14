@@ -1,5 +1,9 @@
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
+.main-content-wrapper {
+    min-height: 85vh;
+}
+
 .pagination .prev {
     text-align: left;
 }

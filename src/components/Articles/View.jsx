@@ -19,9 +19,9 @@ function ArticleView({article, user}) {
             <div className="text-right">
                 {editLink}
             </div>
-            <h2 className="title">{article.title}</h2>
-            <hr/>
-            <div className="content" dangerouslySetInnerHTML={{__html: article.body}}>
+            <span className="title text-3xl">{article.title}</span>
+            {article.image ? <img src={article.image} alt={article.title} className="w-full pt-8"/> : ''}
+            <div className="content pt-4" dangerouslySetInnerHTML={{__html: article.body}}>
             </div>
         </div>
     );

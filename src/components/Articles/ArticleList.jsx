@@ -8,13 +8,23 @@ function ArticleList({articles, user}) {
     let createLink;
 
     if (articles && articles.length) {
-        articleList = articles.map((article) => (
-            <li className="grid-cols-12 article" key={article.id}>
-                <h4 className="title text-2xl"><Link to={`/articles/${article.slug}`}>{article.title}</Link></h4>
-                <p className="break-words" dangerouslySetInnerHTML={{__html: article.short}}>
-                </p>
-            </li>
-        ))
+        articleList = articles.map((article) => {
+                return (
+                    <div className="grid grid-rows-2 article p-4" key={article.id}>
+                        <div className="p-4">
+                            <Link to={`/articles/${article.slug}`}>
+                                <img src={article.image || './fallback.jpg'} alt={article.title}/>
+                            </Link>
+                        </div>
+                        <div className='p-4'>
+                            <h4 className="title text-2xl"><Link to={`/articles/${article.slug}`}>{article.title}</Link></h4>
+                            <p className="break-words" dangerouslySetInnerHTML={{__html: article.short}}>
+                            </p>
+                        </div>
+                    </div>
+                )
+            }
+        )
     }
 
     if (user && (user.can_edit || user.is_admin)) {
@@ -28,9 +38,9 @@ function ArticleList({articles, user}) {
     return (
         <div id="news" className="grid">
             {createLink}
-            <ul className="grid-cols-12">
+            <div className="grid grid-cols-3">
                 {articleList}
-            </ul>
+            </div>
         </div>
     );
 }

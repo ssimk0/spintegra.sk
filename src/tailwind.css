@@ -95,3 +95,15 @@ label {
 .card .title {
     @apply text-2xl border-b-4 py-2 border-gray-500
 }
+
+#page .title {
+    @apply text-3xl border-b-4 py-2 border-orange-500
+}
+
+#article .title {
+    @apply text-3xl border-b-4 py-2 border-orange-500
+}
+
+#page .active {
+    @apply border-b-4 py-2 border-orange-500
+}
