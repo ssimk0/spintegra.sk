@@ -7,6 +7,7 @@ import {uploadImage} from "../../utils/uploadImage";
 import {EditorState} from 'draft-js';
 import Loader from "../Loader";
 import {fromDraftStateToHtml, fromHtmlToDraftState} from "../../utils/editor";
+import ImageUploader from "react-images-upload";
 
 const Editor = React.lazy(() => import('react-draft-wysiwyg').then(module => {
     return {default: module.Editor}
@@ -15,6 +16,7 @@ const Editor = React.lazy(() => import('react-draft-wysiwyg').then(module => {
 
 function ArticleForm({article = {}, onSubmit}) {
     const {handleSubmit, register, errors} = useForm();
+    const [image, setImage] = useState([]);
 
     let content = EditorState.createEmpty()
     let short = EditorState.createEmpty()
@@ -31,10 +33,11 @@ function ArticleForm({article = {}, onSubmit}) {
     const [bodyState, onBodyStateChange] = useState(content);
     const [shortState, onShortStateChange] = useState(short);
     return (
-        <div className="article-form">
+        <div className="article-form container mx-auto py-4">
             <form onSubmit={handleSubmit((v) => onSubmit({
                 ...v,
                 published: true,
+                image: image,
                 body: fromDraftStateToHtml(bodyState),
                 short: fromDraftStateToHtml(shortState)
             }))}
@@ -55,6 +58,25 @@ function ArticleForm({article = {}, onSubmit}) {
                     <span className="input-error">
                         {errors.title && errors.title.message}
                     </span>
+                </div>
+                <div className="form-group">
+                    <label>{i18n.t("form.article.Image")}</label>
+                    <ImageUploader
+                        withIcon={true}
+                        name="images"
+                        label={i18n.t('form.gallery.infoText')}
+                        buttonText={i18n.t('form.gallery.UploadForm')}
+                        fileSizeError={i18n.t('form.errorMessages.fileSize')}
+                        fileTypeError={i18n.t('form.errorMessage.fileExtension')}
+                        onChange={setImage}
+                        onDelete={setImage}
+                        singleImage={true}
+                        withPreview={true}
+                        imgExtension={['.jpg', '.gif', '.png', '.jpeg']}
+                        fileContainerStyle={
+                            {"boxShadow": "none"}
+                        }
+                    />
                 </div>
                 <Suspense fallback={<Loader/>}>
                     <label>

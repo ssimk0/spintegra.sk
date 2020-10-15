@@ -25,7 +25,7 @@ function CategoryUploads({galleryService}) {
     }
 
     return uploads === null ? <Loader/> : (
-        <div>
+        <div className="py-4">
             {state.user && (state.user.can_edit || state.user.is_admin) ?
                 (<div className="text-right block pb-4">
                     <Link className="btn" to={`/gallery/${category}/upload`}>

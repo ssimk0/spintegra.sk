@@ -4,7 +4,6 @@ import * as AppContext from '../../context/app';
 import Login from "./Login";
 
 describe('User page test', () => {
-    let wrapper
     let mockDispatch
 
 
@@ -25,7 +24,7 @@ describe('User page test', () => {
         jest.spyOn(React, "useEffect").mockImplementation(f => f());
 
 
-        wrapper = shallow(
+        shallow(
             <Login/>
         )
 

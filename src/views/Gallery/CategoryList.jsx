@@ -24,7 +24,7 @@ function CategoryList({galleryService}) {
     }
 
     return categories === null ? <Loader/> : (
-        <div>
+        <div className="container mx-auto py-4">
             {state.user && (state.user.can_edit || state.user.is_admin) ?
                 (<div className="text-right">
                     <Link className="btn" to="/gallery/create">{i18n.t("gallery.link.create")}</Link>

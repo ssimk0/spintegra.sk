@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .loader {
+
+        @apply ease-linear rounded-full border-8 border-t-8 border-gray-200 h-32 w-32
+
+    }
+
+
+}
+
+.loader {
+    border-top-color: #3498db !important;
+    -webkit-animation: spinner 1.5s linear infinite;
+    animation: spinner 1.5s linear infinite;
+}
+
+@-webkit-keyframes spinner {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+input:not([type='checkbox']) {
+    @apply bg-white border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal
+}
+
+input:not([type='checkbox']):focus {
+    @apply outline-none shadow-outline
+}
+
+.input-error {
+    @apply text-red-500 text-xs italic
+}
+
+.btn {
+    @apply bg-blue-500 text-white font-bold py-2 px-4 rounded
+}
+
+.btn:hover {
+    @apply bg-blue-700
+}
+
+.btn:focus {
+    @apply outline-none shadow-outline
+}
+
+.form-group {
+    @apply mb-4
+}
+
+label {
+    @apply block text-gray-700 text-sm font-bold mb-2
+}
+
+.disabled {
+    @apply opacity-50 cursor-not-allowed;
+}
+
+.wrapperClassName {
+    @apply pb-4
+}
+
+.main-menu .active {
+    @apply text-orange-600
+}
+
+.card {
+    @apply my-2 mx-4 p-8 bg-white shadow cursor-pointer
+}
+
+.card:hover {
+    @apply bg-orange-500
+}
+
+.card:hover .title {
+    @apply border-gray-700
+}
+
+.card .title {
+    @apply text-2xl border-b-4 py-2 border-gray-500
+}
+
+#page .title {
+    @apply text-3xl border-b-4 py-2 border-orange-500
+}
+
+#article .title {
+    @apply text-3xl border-b-4 py-2 border-orange-500
+}
+
+#page .active {
+    @apply border-b-4 py-2 border-orange-500
+}

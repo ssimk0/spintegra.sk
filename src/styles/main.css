@@ -1,8 +1,13 @@
-@import "~react-image-gallery/styles/css/image-gallery.css";
+@import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
+
+.main-content-wrapper {
+    min-height: 85vh;
+}
 
 .pagination .prev {
     text-align: left;
 }
+
 .pagination .next {
     text-align: right;
 }
@@ -15,4 +20,21 @@
 .editorClassName {
     border: 1px solid #F1F1F1;
     border-top: 0;
+}
+
+.main-menu nav {
+    background-color: rgba(27, 27, 27, 0.5)
+}
+
+.home {
+    margin-top: -6rem;
+}
+
+.project-overlay:hover .project-text {
+    display: block;
+}
+
+.project-overlay .project-text {
+    display: none;
+    background-color: rgba(27, 27, 27, 0.6)
 }

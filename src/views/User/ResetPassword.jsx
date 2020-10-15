@@ -13,7 +13,7 @@ function ResetPassword({userService}) {
     }, [dispatch])
 
     return (
-        <div>
+        <div className="container mx-auto py-4">
             <ResetPasswordForm userService={userService}/>
         </div>
     )
