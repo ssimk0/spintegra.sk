@@ -7,7 +7,7 @@ import PageService from './service/page';
 import setupApi from './api';
 
 import App from './App';
-import 'tailwind.output.css';
+import './styles/tailwind.output.css';
 import 'styles/main.css';
 import UserService from "./service/user";
 

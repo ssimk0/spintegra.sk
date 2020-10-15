@@ -12,6 +12,7 @@
     "chokidar-cli": "^2.1.0",
     "draft-js": "^0.11.7",
     "draft-js-export-html": "^1.4.1",
+    "gh-pages": "^3.1.0",
     "html-to-draftjs": "^1.5.0",
     "i18next": "^19.7.0",
     "mutationobserver-shim": "^0.3.7",
@@ -30,15 +31,16 @@
   },
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "build:tailwind": "tailwind build src/tailwind.css -o src/tailwind.output.css",
-    "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/tailwind.output.css -c 'npm run build:tailwind'",
+    "build:tailwind": "tailwind build src/styles/tailwind.css -o src/styles/tailwind.output.css",
+    "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/styles/tailwind.output.css -c 'npm run build:tailwind'",
     "start": "npm-run-all build:tailwind --parallel watch:tailwind start:react",
     "prebuild": "run-s build:tailwind",
     "build": "react-scripts build",
     "start:react": "react-scripts start",
     "test": "react-scripts test",
     "coverage": "react-scripts test --coverage --watchAll=false",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
