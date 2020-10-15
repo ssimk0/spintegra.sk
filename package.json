@@ -1,6 +1,7 @@
 {
   "name": "integra",
   "version": "0.1.0",
+  "homepage": "https://test.spintegra.sk",
   "private": true,
   "dependencies": {
     "@sentry/react": "^5.22.3",
