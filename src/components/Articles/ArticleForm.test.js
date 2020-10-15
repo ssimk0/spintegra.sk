@@ -36,6 +36,7 @@ describe('Article form test', () => {
         expect(mockSubmit.mock.calls).toEqual([
             [{
                 "body": "<p>body test</p>",
+                "image": [],
                 "published": true,
                 "short": "<p>short</p>",
                 "title": 'new one'
