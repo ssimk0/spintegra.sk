@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "60e89829676d8fa294a34375dae28b2b",
+    "revision": "3078c6d0c1b7ddf02bb6b052a5b0e15a",
     "url": "/index.html"
   },
   {
