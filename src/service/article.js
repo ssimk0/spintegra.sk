@@ -3,7 +3,7 @@ import {uploadImage} from "../utils/uploadImage";
 
 const ArticleService = {
     getArticles(params) {
-        return articles.list({p: params && params.p ? params.p : 1});
+        return articles.list({p: params && params.p ? params.p : 1, s: 9});
     },
     getArticle(slug) {
         return articles.detail({slug});
