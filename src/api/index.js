@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default function setup(t) {
-  axios.defaults.baseURL = 'http://localhost:8081';
+  axios.defaults.baseURL = 'https://api.spintegra.sk';
   axios.interceptors.response.use(
     (response) => {
       return response;
