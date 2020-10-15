@@ -26,6 +26,7 @@ import CreateUploadCategory from "./views/Gallery/CreateUploadCategory";
 import CategoryList from "./views/Gallery/CategoryList";
 import CategoryUploads from "./views/Gallery/CategoryUploads";
 import CreateSubPage from "./views/Page/CreateSubPage";
+import Contact from "./views/Contact";
 
 function loadMenuItems(pageService, menuItems) {
     if (menuItems.length === 0) {
@@ -115,6 +116,10 @@ function App({pageService, userService}) {
                                              className="lg:mt-0 text-white hover:text-orange-600">{i18n.t("pages.gallery.menuName")}</NavLink>
                                 </li>
                                 {menuList}
+                                <li className="lg:mr-4 block lg:inline-block">
+                                    <NavLink to="/contact"
+                                             className="lg:mt-0 text-white hover:text-orange-600">{i18n.t("pages.contact.menuName")}</NavLink>
+                                </li>
                             </ul>
                         </div>
                     </nav>
@@ -184,6 +189,9 @@ function App({pageService, userService}) {
                             <CategoryList galleryService={GalleryService}/>
                         </Route>
 
+                        <Route path="/contact">
+                            <Contact/>
+                        </Route>
 
                         <Route path="*">
                             <NotFound/>

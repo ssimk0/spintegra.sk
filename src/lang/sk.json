@@ -22,6 +22,9 @@
         },
         "resetPassword": {
             "title": "Reset hesla"
+        },
+        "contact": {
+            "menuName": "Kontakt"
         }
     },
     "articles": {
