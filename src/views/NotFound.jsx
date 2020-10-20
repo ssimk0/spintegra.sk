@@ -4,7 +4,7 @@ import React from "react";
 
 function NotFound() {
     return (
-        <div>
+        <div className="container py-4 mx-auto text-center">
             {i18n.t('errors.notFound')}
         </div>
     )

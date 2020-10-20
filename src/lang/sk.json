@@ -101,5 +101,10 @@
     "pagination": {
         "Prev": "Predchadzajúce",
         "Next": "Ďalšie"
+    },
+    "errors": {
+        "login": "heslo alebo email je zle skuste to znova",
+        "unknown": "nastala chyba skuste to znova",
+        "notFound": "Stránka sa nenašla"
     }
 }

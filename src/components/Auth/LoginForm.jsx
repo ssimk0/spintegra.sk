@@ -1,12 +1,14 @@
 import apiSetup from "../../api";
 import {SET_TOKEN, SET_USER_INFO, useAppContext} from "../../context/app";
 import i18n from "../../utils/i18n";
-import React from "react";
+import React, {useState} from "react";
 import {useForm} from "react-hook-form";
 import {Link, useHistory} from "react-router-dom";
+import Error from "../Error/Error";
 
 function LoginForm({userService}) {
     const {handleSubmit, register, errors} = useForm();
+    const [err, setErr] = useState(null);
     const {dispatch} = useAppContext();
     const history = useHistory();
 
@@ -19,11 +21,19 @@ function LoginForm({userService}) {
 
                 history.push('/');
             });
+        }, (err) => {
+
+            if (err.status === 403) {
+                setErr(i18n.t("errors.login"))
+            } else {
+                setErr(i18n.t("errors.unknown"))
+            }
         })
     };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <Error error={err}/>
             <div className="form-group">
                 <label>
                     {i18n.t("form.login.Email")}
