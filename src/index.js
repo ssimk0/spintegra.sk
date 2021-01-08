@@ -18,7 +18,7 @@ if (process.env === "production") {
         integrations: [
             new Integrations.BrowserTracing(),
         ],
-        tracesSampleRate: 1.0,
+        tracesSampleRate: 0.0,
     });
 }
 
